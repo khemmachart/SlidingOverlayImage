@@ -13,7 +13,9 @@ class SlidingOverlayImageView: UIView {
     override init (frame : CGRect) {
         super.init(frame : frame)
         
+        // Default setting
         setMainBackgroundColor(UIColor.whiteColor())
+        setOverlayImageHeight(heightPercentage: 0)
     }
     
     convenience  init () {
@@ -34,7 +36,7 @@ class SlidingOverlayImageView: UIView {
         self.backgroundColor = color
     }
     
-    func setInitialHeightOverlayImage (height: CGFloat) {
+    func setOverlayImageHeight (#heightPercentage: CGFloat) {
         
         let imageFrame  = backgroundImageView.frame
         
@@ -42,9 +44,18 @@ class SlidingOverlayImageView: UIView {
         let frameHeight = imageFrame.height
         
         let origin = CGPoint(x: imageFrame.origin.x, y: imageFrame.origin.y)
-        let height = imageFrame.height * height
+        let height = imageFrame.height * heightPercentage
         
         overlayImageView.frame = CGRectMake(origin.x, origin.y, frameWidth, height)
+    }
+    
+    func animateHeightOverlayImage (#from: CGFloat, to: CGFloat, duration: NSTimeInterval, delay: NSTimeInterval) {
+       
+        setOverlayImageHeight(heightPercentage: from)
+        
+        UIView.animateWithDuration(duration, delay: delay, options: UIViewAnimationOptions.TransitionNone, animations: {
+            self.setOverlayImageHeight(heightPercentage: to)
+        }, completion: nil)
     }
     
     func setSlidingoverlayImageView (#imagePath: String) {
