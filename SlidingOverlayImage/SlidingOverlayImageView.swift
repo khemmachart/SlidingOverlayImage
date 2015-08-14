@@ -103,14 +103,14 @@ class SlidingOverlayImageView: UIView {
         let origin = CGPoint(x: imageFrame.origin.x, y: imageFrame.origin.y)
         let height = location.y - imageFrame.origin.y
         
-        overlayImageView.frame = CGRectMake(origin.x, origin.y, frameWidth, height)
+        setOverlayImageHeight(heightPercentage: height/frameHeight)
         
         if (location.y - origin.y < frameHeight * imgPercentHeight/100) {
-            overlayImageView.frame = CGRectMake(origin.x, origin.y, frameWidth, 0)
+            setOverlayImageHeight(heightPercentage: 0)
         }
         
         if (location.y > origin.y + frameHeight * (100-imgPercentHeight)/100) {
-            overlayImageView.frame = CGRectMake(origin.x, origin.y, frameWidth, frameHeight)
+            setOverlayImageHeight(heightPercentage: 1)
         }
         
         println(getHeightOverlayImage())

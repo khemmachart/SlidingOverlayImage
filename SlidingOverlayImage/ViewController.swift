@@ -26,9 +26,4 @@ class ViewController: UIViewController {
         
         self.view.addSubview(slidingView)
     }
-    
-    override func viewDidAppear(animated: Bool) {
-
-        
-    }
 }
