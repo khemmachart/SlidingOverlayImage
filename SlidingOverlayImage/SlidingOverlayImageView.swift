@@ -2,7 +2,7 @@ import Foundation
 import UIKit
 
 protocol SlidingOverlayImageViewDelegate {
-    func overlayImageHeightDidChange (height: CGFloat) -> Void
+    func overlayImageHeightDidChange (height: CGFloat)
 }
 
 class SlidingOverlayImageView: UIView {
@@ -11,6 +11,8 @@ class SlidingOverlayImageView: UIView {
     var overlayImageView    = UIImageView()
     
     var imgPercentHeight    = CGFloat(8)
+    
+    var delegate: SlidingOverlayImageViewDelegate!
     
     // MARK: - Initialization
     
@@ -117,11 +119,11 @@ class SlidingOverlayImageView: UIView {
             setOverlayImageHeight(heightPercentage: 1)
         }
         
-        overlayImageHeightDidChange(getHeightOverlayImage())
-    }
-    
-    func overlayImageHeightDidChange (height: CGFloat) {
-
+        // Calling delegate method
+        
+        if let del = delegate {
+            del.overlayImageHeightDidChange(getHeightOverlayImage())
+        }
     }
 }
 
