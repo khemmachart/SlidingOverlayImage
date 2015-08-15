@@ -14,7 +14,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         
-        var frame = CGRectMake(0, 0, self.view.frame.width/2, self.view.frame.height/2)
+        var frame = CGRectMake(0, 0, self.view.frame.width/3, self.view.frame.height/3)
         
         slidingView = SlidingOverlayImageView(frame: frame)
         // Theses commented lines are optional
@@ -22,7 +22,8 @@ class ViewController: UIViewController {
         // slidingView.setMainBackgroundColor(self.view.backgroundColor!)
         slidingView.setSlidingoverlayImageView(imagePath: "IMG_8115")  // Put this method as the last line to call
         slidingView.animateHeightOverlayImage(from: 1, to: 0, duration: 3, delay: 0)
-        slidingView.center = self.view.center
+        slidingView.center.y = self.view.center.y
+        slidingView.center.x = self.view.frame.width * 0.25
         
         self.view.addSubview(slidingView)
     }

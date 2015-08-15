@@ -1,6 +1,10 @@
 import Foundation
 import UIKit
 
+protocol SlidingOverlayImageViewDelegate {
+    func overlayImageHeightDidChange (height: CGFloat) -> Void
+}
+
 class SlidingOverlayImageView: UIView {
     
     var backgroundImageView = UIImageView()
@@ -113,7 +117,11 @@ class SlidingOverlayImageView: UIView {
             setOverlayImageHeight(heightPercentage: 1)
         }
         
-        println(getHeightOverlayImage())
+        overlayImageHeightDidChange(getHeightOverlayImage())
+    }
+    
+    func overlayImageHeightDidChange (height: CGFloat) {
+
     }
 }
 
