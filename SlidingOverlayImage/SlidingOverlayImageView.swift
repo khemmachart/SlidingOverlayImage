@@ -66,10 +66,21 @@ class SlidingOverlayImageView: UIView {
     
     func setSlidingoverlayImageView (#imagePath: String) {
         
+        setBackgroundView(imagePath)
+        setOverlayView()
+    }
+    
+    func setBackgroundView (imagePath: String){
+        
         backgroundImageView = UIImageView(frame: frame)
         backgroundImageView.image = UIImage(named: imagePath)
         backgroundImageView.contentMode = UIViewContentMode.ScaleAspectFit
         backgroundImageView.center = self.center
+        
+        self.addSubview(backgroundImageView)
+    }
+    
+    func setOverlayView () {
         
         overlayImageView = UIImageView(frame: self.backgroundImageView.frame)
         overlayImageView.image = UIImage().coloredImage(self.backgroundColor!)
@@ -77,7 +88,6 @@ class SlidingOverlayImageView: UIView {
         overlayImageView.center = self.center
         overlayImageView.alpha = 0.9
         
-        self.addSubview(backgroundImageView)
         self.addSubview(overlayImageView)
     }
     
